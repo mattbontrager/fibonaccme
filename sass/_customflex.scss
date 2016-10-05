@@ -1,0 +1,53 @@
+%flexParent {
+	@include display-flex(flex);
+}
+
+%flexRow {
+	@include flex-direction(row); 
+}
+
+%flexColumn {
+	@include flex-direction(column);
+}
+
+%flexWrap {
+	@include flex-wrap(wrap);
+}
+
+%flexNoWrap {
+	@include flex-wrap(nowrap);
+}
+
+%spaceAround {
+	@include justify-content(space-around);
+}
+
+%spaceBetween {
+	@include justify-content(space-between);
+}
+
+%verticalFill {
+	@include align-items(stretch);
+}
+
+%verticalCenter {
+	@include align-items(center);
+}
+
+@mixin flexRowNoWrap() {
+	@extend %flexParent;
+	@extend %flexRow;
+	@extend %flexNoWrap;	
+}
+
+@mixin flexRowWrap() {
+	@extend %flexParent;
+	@extend %flexRow;
+	@extend %flexWrap;	
+}
+
+@mixin flexColumnWrap() {
+	@extend %flexParent;
+	@extend %flexColumn;
+	@extend %flexWrap;	
+}

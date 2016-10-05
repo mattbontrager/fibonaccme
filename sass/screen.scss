@@ -1,0 +1,139 @@
+@import "compass/css3";
+
+%flexParent {
+	@include display-flex(flex);
+}
+
+%flexRow {
+	@include flex-direction(row); 
+}
+
+%flexColumn {
+	@include flex-direction(column);
+}
+
+%flexWrap {
+	@include flex-wrap(wrap);
+}
+
+%flexNoWrap {
+	@include flex-wrap(nowrap);
+}
+
+%spaceAround {
+	@include justify-content(space-around);
+}
+
+%spaceBetween {
+	@include justify-content(space-between);
+}
+
+%verticalFill {
+	@include align-items(stretch);
+}
+
+%verticalCenter {
+	@include align-items(center);
+}
+
+@mixin flexRowNoWrap() {
+	@extend %flexParent;
+	@extend %flexRow;
+	@extend %flexNoWrap;	
+}
+
+@mixin flexRowWrap() {
+	@extend %flexParent;
+	@extend %flexRow;
+	@extend %flexWrap;	
+}
+
+@mixin flexColumnWrap() {
+	@extend %flexParent;
+	@extend %flexColumn;
+	@extend %flexWrap;	
+}
+
+@mixin bgc($color) {
+	background-color: $color;
+}
+
+.container {
+	@extend %flexParent;
+	@extend %flexColumn;
+	@extend %verticalCenter;
+	background-color: #000;
+	color: #FFF;
+	.buttonContainer {
+		@include flex(4);
+		min-width: 100%;
+		overflow-y: auto;
+		margin-bottom: 4%;
+		margin-top: 25px;
+		ul {
+			list-type: none;
+			max-height: 300px;
+			max-width: 335px;
+			list-style: none;
+			// @include flexColumnWrap;
+			@include flexRowWrap;
+			li {
+				@include transition-property(all);
+				@include transition-duration(1s);
+				@include transition-timing-function(ease-in-out);
+				@include flex(1);
+				max-width: 338px;
+				margin: 0 50px 30px 0;
+				box-sizing: border-box;
+				.disabled {
+					@include filter(grayscale(90%));
+				}
+				button.keyword {
+					@include flexRowNoWrap;
+					@include justify-content(flex-end);
+					@include align-items(center);
+					-webkit-appearance: none;
+					border: 0;
+					/* background-color: purple; */
+					height: 36px; //unsure
+					width: 200px; //unsure
+					padding: 0 0 0 5px;
+					border: 0;
+					text-align: right;
+					color: #FFF;
+					box-sizing: border-box;
+					.keywordName {
+						flex: 1;
+						padding: 0;
+						border: 0;
+						text-align: right;
+						width: 70%;
+						line-height: 0.7;
+						white-space: nowrap;
+						overflow: hidden;
+						text-overflow: ellipsis;
+					}
+					.arrow-left {
+						flex: 1;
+						width: 0;
+						height: 0;
+						border-top: 6px solid transparent;
+						border-bottom: 6px solid transparent;
+						border-right: 10px solid #FFF;
+					}
+					.rightSide {
+						flex: 0 40px;
+						background-color: #FFF;
+						height: 39px;
+						box-sizing: border-box;
+						padding-right: 15px;
+						line-height: 0.7;
+						.popularityNumber {
+							color: purple; //whatever the color of the keyword is
+						}
+					}
+				}
+			}
+		}
+	}
+}
